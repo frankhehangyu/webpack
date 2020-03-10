@@ -1,4 +1,4 @@
 
 export default function printMe(){
-    console.log(`I am print.js file`);
+    console.error(`I am print.js file`);
 }
