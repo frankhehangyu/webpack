@@ -1,4 +1,8 @@
 
 export default function printMe(){
-    console.error(`I am print.js file`);
+    console.log('Updating print.js a')
+}
+
+export function PrintHim(){
+    console.error("I am Him");
 }

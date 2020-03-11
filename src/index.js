@@ -2,7 +2,7 @@ import _ from "lodash";
 import './style.css';
 import Icon from './logo.svg';
 import Data from './data.xml';
-import printMe from './print';
+import printMe,{PrintHim} from './print';
 
 function component(){
     var element = document.createElement("div");
@@ -17,12 +17,28 @@ function component(){
     //output management
     var btn = document.createElement('button');
     btn.onclick = printMe;
-    btn.innerHTML = "Click me and check the console!";
+    btn.innerHTML = "点我啊";
     element.appendChild(btn);
+
+    var btnHim = document.createElement("button");
+    btnHim.onclick = PrintHim;
+    btnHim.innerHTML = "Click Him";
+    element.appendChild(btnHim);
 
     console.log(Data);
 
     return element;
 }
 
-document.body.appendChild(component());
+let element = component();
+document.body.appendChild(element);
+
+if(module.hot){
+    module.hot.accept("./print.js",function(){
+        console.log("Accepting the updated   printMe module     !");
+        printMe();
+        document.body.removeChild(element);
+        element = component();
+        document.body.appendChild(element);
+    });
+}
